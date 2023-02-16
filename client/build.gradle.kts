@@ -5,6 +5,9 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.15.RELEASE"
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
+
+	// apollo graphql の plugin を追加
+	id("com.apollographql.apollo3").version("3.7.4")
 }
 
 group = "com.example"
@@ -31,4 +34,17 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+// apollo graphql の plugin 設定
+apollo {
+	service("sample-service") {
+		packageName.set("com.example")
+
+		introspection {
+			endpointUrl.set("http://localhost:4000/graphql/endpoint")
+			schemaFile.set(file("src/main/graphql/com/example/schema.graphqls"))
+		}
+
+	}
 }
