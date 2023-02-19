@@ -23,6 +23,12 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	// apollo graphql の ライブラリを追加
+	runtimeOnly("com.apollographql.apollo3:apollo-api:3.7.4")
+
+	// 非同期通信を扱うためのライブラリ
+	implementation("com.apollographql.apollo3:apollo-rx3-support:3.7.4")
 }
 
 tasks.withType<KotlinCompile> {
